@@ -1,0 +1,55 @@
+spring:
+  profiles:
+    include:
+      - "auth"
+      - "real-db"
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 126834621520-jidfa231i9v176dtcr01isqmnn0mp150.apps.googleusercontent.com
+            clientSecret: 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
+            scope:
+              - "profile"
+              - "email"
+  session:
+    jdbc:
+      initialize-schema: always
+    store-type: jdbc
+  jpa:
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:mysql://smallgift.ci1nmqpbowzt.ap-northeast-2.rds.amazonaws.com/smallgift
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: admin
+    password: smallgift1234!
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+cloud:
+  aws:
+    s3:
+      bucket: small-gift
+    credentials:
+      access-key: AKIAXWHR4ZXAJKV5LXOR
+      secret-key: 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
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+
+logging:
+  level:
+    com:
+      amazonaws:
+        util:
+          EC2MetadataUtils: ERROR
